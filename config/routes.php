@@ -24,6 +24,9 @@
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
+// use Cake/Routing/Router;
+
+
 return static function (RouteBuilder $routes) {
     /*
      * The default class to use for all routes
@@ -70,8 +73,31 @@ return static function (RouteBuilder $routes) {
          * You can remove these routes once you've connected the
          * routes you want in your application.
          */
+
+        
+        // Router::scope('/', function($routes){
+        //     $routes->connect('/show', ['controller' => 'Users', 'action' => 'display']);
+        //  });
+
+        // Router::connect('/', ['controller' => 'UsersController', 'action' => 'display']);
+
+        // $builder->connect('/{controller}', ['action' => 'index']);
+        
+        
+        // $builder->connect('/display', ['controller' =>  'UsersController' => 'display']);
+        
         $builder->fallbacks();
+        
     });
+    
+
+    $routes->connect('/all-users', ['controller' => 'Users', 'action' => 'index']);
+
+    $routes->connect('/display', ['controller' => 'Users', 'action' => 'view']);
+
+    $routes->connect('users/create', ['controller' => 'Users', 'action' => 'create']);
+
+    $routes->connect('/welcome', ['controller', 'Site', 'action' => 'index']);
 
     /*
      * If you need a different set of middleware or none at all,
@@ -88,4 +114,5 @@ return static function (RouteBuilder $routes) {
      * });
      * ```
      */
+
 };
